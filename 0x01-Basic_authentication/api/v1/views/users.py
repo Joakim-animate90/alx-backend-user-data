@@ -5,7 +5,14 @@ from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models.user import User
 
-
+@app_views.route('/unauthorized', methods=['GET'], strict_slashes=False)
+def authorized() -> str:
+    """ GET /api/v1/unauthorized
+    Return:
+        - raise a 401 error
+    """
+    abort(401, description="Unauthorized")
+    
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def view_all_users() -> str:
     """ GET /api/v1/users
